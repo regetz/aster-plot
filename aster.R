@@ -158,33 +158,9 @@ aster <- function (lengths, widths, labels, disk=0.5, max.length,
     invisible(NULL)
 }
 
-
 # wrapper function to generate an aster plot to serve as a legend
 aster.legend <- function(labels, ...) {
     aster(lengths=rep(1, length(labels)), labels=labels,
         plot.outline=FALSE, bty="o", ...)
     text(x=par("usr")[1]+0.25, y=par("usr")[4]-0.1, labels="Legend", font=4)
 }
-
-#
-# Example plots...
-#
-
-# generate some fake data
-set.seed(1)
-scores <- sample(1:10)
-weights <- sample(1:10)
-labels <- paste(LETTERS[1:10], "X", sep="")
-
-# do some plots
-png(file="aster-plots.png", height=600, width=600)
-par(mfrow=c(2,2), xpd=NA)
-aster(lengths=scores, widths=weights, disk=0, main="Example 1",
-    plot.outline=FALSE)
-aster(lengths=scores, widths=weights, labels=labels, main="Example 2",
-    lty=2, fill.col="gray", plot.outline=FALSE)
-aster.legend(labels=labels, widths=weights)
-aster(lengths=scores, widths=weights, disk=0.5, main="Example 3",
-    center="Hello world")
-dev.off()
-
