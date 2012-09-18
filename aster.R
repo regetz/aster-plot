@@ -50,6 +50,9 @@ aster <- function (lengths, widths, labels, disk=0.5, max.length,
     if (missing(max.length)) {
         max.length <- max(lengths)
     }
+    if (is.data.frame(lengths)){
+        lengths <- as.numeric(lengths)
+    }
 
     # determine radius of each petal
     if (disk < 0 || 1 < disk) {
